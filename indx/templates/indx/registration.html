@@ -1,0 +1,53 @@
+{% extends "indx/index.html" %}
+
+{% block content %}
+
+    {% if error %}
+    <div id="reg_error_div">
+        <form action="{% url 'indx:registration' %}" method="POST">
+            {% csrf_token %}
+
+            {% if nick %}
+            <p id="inp_space1">Nickname:</p>
+            <input id="inp_space1" type="text" name='Nickname' placeholder="Nickname" value="{{ nick }}"><br>
+            {% else %}
+            <p id="inp_space1">Nickname:</p>
+            <input id="inp_space1" type="text" name='Nickname' placeholder="Nickname" value="{{ nick }}"><br>
+            <p id='p_error'>Enter the nickname</p>
+            {% endif %}
+
+            {% if email %}
+            <p id="inp_space2">Email:</p>
+            <input id="inp_space2" type="email" name="Email" placeholder="Email" value="{{ email }}"><br>
+            {% else %}
+            <p id="inp_space2">Email:</p>
+            <input id="inp_space2" type="email" name="Email" placeholder="Email" value="{{ email }}"><br>
+            <p id='p_error'>Enter the email</p>
+            {% endif %}
+
+            {% if pass_error %}
+            <p id="inp_space3">Password:</p>
+            <input id="inp_space3" type="password" name="password" placeholder="password"><br>
+
+            <p id="inp_space14">Repeat the password:</p>
+            <input id="inp_space4" type="password" name="rep_pass" placeholder="Repeat password"><br>
+            <p id='p_error'>{{ pass_error }}</p>
+            {% else %}
+            <p id="inp_space3">Password:</p>
+            <input id="inp_space3" type="password" name="password" placeholder="password"><br>
+
+            <p id="inp_space14">Repeat the password:</p>
+            <input id="inp_space4" type="password" name="rep_pass" placeholder="Repeat password"><br>
+            {% endif %}
+
+            <input id="butt_space" type="submit" value="Submit">
+        </form>
+    </div>
+
+    {% else %}
+    <div id="line"></div>
+    <center><p id='reg_message'>{{ message }}</p></center>
+    <div id="line"></div>
+    {% endif %}
+
+{% endblock content %}

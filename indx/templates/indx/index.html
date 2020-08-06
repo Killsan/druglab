@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" type='text/css' href="{% static 'indx/style.css' %}">
+</head>
+<body>
+
+   <div id="auth_reg">
+        <button id="auth">Log in</button>
+        <button id="reg">Registration</button>
+    </div>
+
+    <div id="auth_div">
+        <form action="{% url 'indx:login' %}" method="POST">
+            {% csrf_token %}
+
+            <p>Nickname:</p>
+            <input type="text" name='Nickname' placeholder="Nickname"><b></b>
+
+            <p>Password:</p>
+            <input type="password" name='password' placeholder='password'><br>
+
+            <input type="submit" value='Submit'>
+        </form>
+    </div>
+
+    <div id="reg_div">
+        <form action="{% url 'indx:registration' %}" method="POST">
+            {% csrf_token %}
+
+            <p>Nickname:</p>
+            <input type="text" name='Nickname' placeholder="Nickname"><br>
+
+            <p>Email:</p>
+            <input type="email" name="Email" placeholder="Email"><br>
+
+            <p>Password:</p>
+            <input type="password" name="password" placeholder="password"><br>
+
+            <p>Repeat the password:</p>
+            <input type="password" name="rep_pass" placeholder="Repeat password"><br>
+
+            <input id="butt_space" type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div id="main_menu">
+        <center><h1>Nerf station</h1></center>
+        <ul id='menu'>
+            <li><a href="{% url 'indx:shop' %}">Shop</a></li>
+            <li>Videos</li>
+            <li>News</li>
+        </ul>
+    </div>
+
+    {% block content %}
+
+    {% endblock content %}
+
+    {% load static %}
+    <script type='text/javascript' src="{% static 'script.js' %}"></script>
+</body>
+</html>

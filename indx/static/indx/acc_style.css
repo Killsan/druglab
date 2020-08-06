@@ -1,0 +1,40 @@
+/* =====================================MAIN=========================================== */
+
+body{
+    background: white url('images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-size: 30px;
+    color: white;
+}
+
+a{
+    color: white;
+}
+
+li{
+    display: inline;
+    padding-left: 280px;
+}
+
+#main_menu{
+    padding: 40px;
+}
+
+/* ========================================USER_BOX================================================ */
+
+#user_space{
+    float: right;
+    padding: 20px;
+    background: rgb(27, 55, 82);
+    width: 80px;
+    height: 15px;
+    font-size: 25px;
+    text-align: center;
+    border-radius: 10px;
+    line-height: 19px;
+}
+
+#user_space:hover{
+    background: rgb(53, 102, 148);
+    cursor: pointer;
+}

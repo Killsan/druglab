@@ -1,0 +1,78 @@
+/* =====================================MAIN=========================================== */
+
+body{
+    background: white url('images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-size: 30px;
+    color: white;
+}
+
+a{
+    color: white;
+}
+
+li{
+    display: inline;
+    padding-left: 280px;
+}
+
+#main_menu{
+    padding: 40px;
+}
+
+/* ==============================================REG_AUTH BOX=============================== */
+
+#auth_reg{
+    float: right;
+    padding: 5px;
+}
+
+#auth_div, #reg_div, #auth_err_div, #reg_error_div{
+    width: 30%;
+    height: 80%;
+    background: rgb(255, 255, 255);
+    color: black;
+    position: absolute;
+    z-index: 4;
+    text-align: center;
+    border: 3px solid rgb(226, 226, 226);
+    border-radius: 20px;
+    margin: 0 auto;
+    transform: translate(115%, 10%);
+    font-size: 15px;
+    visibility: hidden;
+}
+
+#reg_error_div{
+    visibility: visible;
+    transform: translate(115%, -38%);
+    z-index: 5;
+}
+
+#p_error{
+    margin: 2px;
+    color: red;
+    font-size: 15px;
+}
+
+#butt_space{
+    margin: 20px;
+}
+
+#line{
+    background: white;
+    height: 4px;
+    width: 80%;
+    margin: 0 auto;
+}
+/* =======================================LOGIN============================================= */
+
+#auth_err_div{
+    visibility: visible;
+    transform: translate(115%, -38%);
+    z-index: 5;
+}
+
+#user_index_input_hid{
+    visibility: hidden;
+}

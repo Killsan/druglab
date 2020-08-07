@@ -32,6 +32,7 @@ li{
     text-align: center;
     border-radius: 10px;
     line-height: 19px;
+    color: white;
 }
 
 #user_space:hover{

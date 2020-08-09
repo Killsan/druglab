@@ -1,65 +1,52 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, Http404 
 from django.urls import reverse 
-from django.views import generic
+from django.contrib import messages
+
+from django.contrib.auth import authenticate, login, logout
+from .forms import RegistrationForm
+from django.contrib.auth.decorators import login_required
+
 from .models import *
 
+@login_required(login_url='indx:login')
 def index(request):
-    
     return render(request, 'indx/index.html')
 
-def registration(request):
-    nick = request.POST.get('Nickname')
-    email = request.POST.get('Email')
-    password1 = request.POST.get('password')
-    password2 = request.POST.get('rep_pass')
+def loginPage(request):
 
-    if nick == "" or email == "" or password1 == "" or password2 == "":
-        return render(request, 'indx/registration.html', {
-            'error': 'error',
-            'nick': nick,
-            'email': email,
-        })
-    elif password1 != password2:
-        return render(request, 'indx/registration.html', {
-            'error': 'error',
-            'nick': nick,
-            'email': email,
-            'pass_error': 'Passwords are not the same',
-        })
-    else:
-        new_user = App_user(int(App_user.objects.all().count())+1, nick, email, password1)
-        new_user.save()
-        return render(request, 'indx/registration.html', {
-            'message': "User created",
-        })
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
 
-def login(request):
-    nickname = request.POST.get('Nickname')
-    print(nickname)
-    Password = request.POST.get('password')
+        if user != None:
+            login(request, user)
+            return redirect('indx:index')
+        else:
+            messages.error(request, "Username or password is incorrect")
 
-    try:
-        user = App_user.objects.filter(nick=nickname)[0]
-    except IndexError:
-        user = None
+    context = {}
+    return render(request, 'indx/login.html', context)
 
-    if user == None:
-        return render(request, 'indx/login.html', {
-            'error': "User not found",
-        })
-    elif user.password == Password:
-        return render(request, 'indx/account.html', {
-            'user': user,
-        })
-    else:
-        return render(request, 'indx/login.html', {
-            'error': "Incorrect password",
-        })
+def logoutUser(request):
+    logout(request)
+    return redirect('indx:login')
 
-def account(request):
-    user = App_user.objects.filter(nick=request.POST.get('nickname'))
-    return render(request, 'indx/account.html', {'user': user})
+def registrationPage(request):
+    form = RegistrationForm()
+
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('indx:login')
+        else:
+            for field in form.errors:
+                messages.error(request, form.errors[field].as_text())
+
+    context = {'form': form,}
+    return render(request, 'indx/registration.html', context)
 
 def shop(request):
     return render(request, 'indx/shop.html')

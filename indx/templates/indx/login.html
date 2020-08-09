@@ -1,48 +1,39 @@
-{% extends 'indx/index.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'indx/login.css' %}">
+</head>
+<body>
 
-{% block content %}
-
-    {% if error == "Incorrect password" %}
-    <div id="auth_err_div">
-        <form action="{% url 'indx:account' %}" method="POST">
-            {% csrf_token %}
-
-            <p>Nickname:</p>
-            <input type="text" name='Nickname' placeholder="Nickname" value='{{ user }}'><b></b>
-
-            <p>Password:</p>
-            <input type="password" name='password' placeholder='password'><br>
-            <p id='p_error'>{{ error }}</p>
-
-            <input type="submit" value='Submit'>
-        </form>
+    <div id="head">
+        <p id='p_head'>Login</p>
     </div>
-    {% elif error == "User not found" %}
-    <div id="auth_err_div">
-        <form action="{% url 'indx:login' %}" method="POST">
-            {% csrf_token %}
 
-            <p>Nickname:</p>
-            <input type="text" name='Nickname' placeholder="Nickname" value='{{ user }}'><b></b>
-            <p id='p_error'>{{ error }}</p>
+    <center><form action="" method="POST">
+        {% csrf_token %}
 
-            <p>Password:</p>
-            <input type="password" name='password' placeholder='password'><br>
+        <div id="username">
+            <label for="username" id="username_label">Username:</label>
+            <input type="text" placeholder="Username" name="username" id="username_input">
+        </div>
 
-            <input type="submit" value='Submit'>
-        </form>
-    </div>
-    {% endif %}
+        <div id="password">
+            <label for="password" id="password_label">Password:</label>
+            <input type="password" placeholder="Password" name="password" id="password_input">
+        </div>
 
-    {% if message %}
-    <div id='auth_err_div'>
-        <form action="{% url 'indx:account' %}" method="POST">
-            {% csrf_token %}
-            <input type="text" value="{{ user }}" name='nickname' id='user_index_input_hid'>
-            <center><p id='auth_message'>{{ message }}</p></center>
-            <center><input type="submit" value="Submit"></center>
-        </form>
-    </div>
-    {% endif %}
+        <p id="registration_redir">Don't have an account? <a href="{% url 'indx:registration' %}">Registration</a></p>
+        
+        {% for message in messages %}
+            <p id='error_message'>{{ message }}</p>
+        {% endfor %}
 
-{% endblock content %}
+        <center><input type="submit" id="submit_butt"></center>
+    </form></center>
+
+</body>
+</html>

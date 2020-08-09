@@ -9,52 +9,20 @@
 </head>
 <body>
 
-   <div id="auth_reg">
-        <button id="auth">Log in</button>
-        <button id="reg">Registration</button>
-    </div>
-
-    <div id="auth_div">
-        <form action="{% url 'indx:login' %}" method="POST">
-            {% csrf_token %}
-
-            <p>Nickname:</p>
-            <input type="text" name='Nickname' placeholder="Nickname"><b></b>
-
-            <p>Password:</p>
-            <input type="password" name='password' placeholder='password'><br>
-
-            <input type="submit" value='Submit'>
-        </form>
-    </div>
-
-    <div id="reg_div">
-        <form action="{% url 'indx:registration' %}" method="POST">
-            {% csrf_token %}
-
-            <p>Nickname:</p>
-            <input type="text" name='Nickname' placeholder="Nickname"><br>
-
-            <p>Email:</p>
-            <input type="email" name="Email" placeholder="Email"><br>
-
-            <p>Password:</p>
-            <input type="password" name="password" placeholder="password"><br>
-
-            <p>Repeat the password:</p>
-            <input type="password" name="rep_pass" placeholder="Repeat password"><br>
-
-            <input id="butt_space" type="submit" value="Submit">
-        </form>
+    <div id='user_box'>
+        <label id='user_box_name' for="logout_button">{{ request.user }}</label>
+        <a href="{% url 'indx:logout' %}"><button id='user_box_button' name='logout_button' id='logout'>Logout</button></a>
     </div>
 
     <div id="main_menu">
-        <center><h1>Nerf station</h1></center>
-        <ul id='menu'>
-            <li><a href="{% url 'indx:shop' %}">Shop</a></li>
-            <li>Videos</li>
-            <li>News</li>
-        </ul>
+        <center><h1>Interesting name</h1></center>
+        <center><div id="menu">
+            <ul>
+                <li><a href="{% url 'indx:shop' %}">Shop</a></li>
+                <li>Videos</li>
+                <li>News</li>
+            </ul>
+        </div></center>
     </div>
 
     {% block content %}

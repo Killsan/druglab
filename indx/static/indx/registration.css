@@ -1,0 +1,64 @@
+body{
+    background: rgb(230, 230, 230);
+}
+
+#head{
+    height: 30%;
+    color: white;
+    background: grey;
+}
+
+#p_head{
+    text-align: center;
+    padding: 10px;
+    font-size: 30px;
+}
+
+form{
+    width: 35%;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: rgb(214, 214, 214);
+    padding: 25px;
+    border: 2px grey solid;
+    border-radius: 7px;
+    color: black;
+    
+}
+
+.username, .email, .password1, .password2{
+    margin: 10px;
+    font-size: 20px;
+}
+
+#username_label, #email_label, #password1_label, #password2_label{
+    text-align: center;
+    margin: 20px;
+}
+
+#submit_butt{    
+    background: grey;
+    color: white;
+    padding: 10px;  
+    font-size: 20px;
+    text-align: center;
+}
+
+#submit_butt:hover{
+    cursor: pointer;
+    color: white;
+    background: rgb(189, 189, 189);
+}
+
+#login_redir{
+    text-align: center;
+    font-size: 20px;
+    margin-top: -10px;
+}
+
+#error_message{
+    text-align: center;
+    background: rgb(214, 214, 214);
+    color: red;
+}

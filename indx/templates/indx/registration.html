@@ -1,53 +1,71 @@
-{% extends "indx/index.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'indx/registration.css' %}">
+</head>
+<body>
 
-{% block content %}
-
-    {% if error %}
-    <div id="reg_error_div">
-        <form action="{% url 'indx:registration' %}" method="POST">
-            {% csrf_token %}
-
-            {% if nick %}
-            <p id="inp_space1">Nickname:</p>
-            <input id="inp_space1" type="text" name='Nickname' placeholder="Nickname" value="{{ nick }}"><br>
-            {% else %}
-            <p id="inp_space1">Nickname:</p>
-            <input id="inp_space1" type="text" name='Nickname' placeholder="Nickname" value="{{ nick }}"><br>
-            <p id='p_error'>Enter the nickname</p>
-            {% endif %}
-
-            {% if email %}
-            <p id="inp_space2">Email:</p>
-            <input id="inp_space2" type="email" name="Email" placeholder="Email" value="{{ email }}"><br>
-            {% else %}
-            <p id="inp_space2">Email:</p>
-            <input id="inp_space2" type="email" name="Email" placeholder="Email" value="{{ email }}"><br>
-            <p id='p_error'>Enter the email</p>
-            {% endif %}
-
-            {% if pass_error %}
-            <p id="inp_space3">Password:</p>
-            <input id="inp_space3" type="password" name="password" placeholder="password"><br>
-
-            <p id="inp_space14">Repeat the password:</p>
-            <input id="inp_space4" type="password" name="rep_pass" placeholder="Repeat password"><br>
-            <p id='p_error'>{{ pass_error }}</p>
-            {% else %}
-            <p id="inp_space3">Password:</p>
-            <input id="inp_space3" type="password" name="password" placeholder="password"><br>
-
-            <p id="inp_space14">Repeat the password:</p>
-            <input id="inp_space4" type="password" name="rep_pass" placeholder="Repeat password"><br>
-            {% endif %}
-
-            <input id="butt_space" type="submit" value="Submit">
-        </form>
+    <div id="head">
+        <p id='p_head'>Registration</p>
     </div>
 
-    {% else %}
-    <div id="line"></div>
-    <center><p id='reg_message'>{{ message }}</p></center>
-    <div id="line"></div>
-    {% endif %}
+    <center><form action="" method="POST">
+        {% csrf_token %}
 
-{% endblock content %}
+        <div class="username">
+            <label for="username" id="username_label">{{ form.username.label }}:</label>
+            {{ form.username }}
+        </div>
+
+        <div class="email">
+            <label for="email" id="email_label">{{ form.email.label }}:</label>
+            {{ form.email }}
+        </div>
+
+        <div class="password1">
+            <label for="password1" id="password1_label">{{ form.password1.label }}:</label>
+            {{ form.password1 }}
+        </div>
+
+        <div class="password2">
+            <label for="password2" id="password2_label">{{ form.password2.label }}:</label>
+            {{ form.password2 }}
+        </div><br>
+
+        <p id="login_redir">Already have an account? <a href="{% url 'indx:login' %}">login</a></p>
+
+        {% for message in messages %}
+            <p id="error_message">{{ message }}</p>
+        {% endfor %}
+
+        <center><input id="submit_butt" type="submit" name="Create User"></center>
+
+    </form></center>
+
+    <!-- <div>{{ form.errors }}</div> -->
+    
+    <script>
+        let forms = document.getElementsByTagName("input");
+        forms[1].placeholder = "Username";
+        forms[2].placeholder = "Email";
+        forms[3].placeholder = "Password";
+        forms[4].placeholder = "Repeat password";
+
+        forms[1].style.padding = '4px';
+        forms[2].style.padding = '4px';
+        forms[3].style.padding = '4px';
+        forms[4].style.padding = '4px';
+
+        forms[1].style.fontSize = '17px';
+        forms[2].style.fontSize = '17px';
+        forms[3].style.fontSize = '17px';
+        forms[4].style.fontSize = '17px';
+
+    </script>
+
+</body>
+</html>

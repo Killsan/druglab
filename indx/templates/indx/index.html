@@ -18,12 +18,24 @@
         <center><h1>Interesting name</h1></center>
         <center><div id="menu">
             <ul>
-                <li><a href="{% url 'indx:shop' %}">Shop</a></li>
-                <li>Videos</li>
-                <li>News</li>
+                <li><button id="shop_main_div_button">Shop</button></li>
+                <li><button id="videos_main_button">Videos</button></li>
+                <li><button id="news_main_button">News</button></li>
             </ul>
         </div></center>
     </div>
+
+    <center><div id="shop_main_div">
+        <form action="{% url 'indx:shop_search' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" id="search_input" name='search'><br><br>
+            <button type="submit" id="search_button">Submit</button>
+        </form>
+    </div></center>
+
+    <div id="videos_main_div">a</div>
+
+    <div id="news_main_div">b</div>
 
     {% block content %}
 

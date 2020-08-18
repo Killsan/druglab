@@ -6,15 +6,17 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .forms import RegistrationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group
 
+from .decorators import *
 from .models import *
 
 @login_required(login_url='indx:login')
 def index(request):
     return render(request, 'indx/index.html')
 
+@unauth_user
 def loginPage(request):
-
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -33,6 +35,7 @@ def logoutUser(request):
     logout(request)
     return redirect('indx:login')
 
+@unauth_user
 def registrationPage(request):
     form = RegistrationForm()
 
@@ -48,5 +51,23 @@ def registrationPage(request):
     context = {'form': form,}
     return render(request, 'indx/registration.html', context)
 
-def shop(request):
-    return render(request, 'indx/shop.html')
+@login_required(login_url='indx:login')
+def userPage(request):
+    context = {}
+    return render(request, 'indx/user.html', context)
+
+@login_required(login_url='indx:login')
+def shopSearch(request):
+    search = request.POST.get('search')
+    obj = str(search)
+    try:
+        obj = Product.objects.filter(product_name=obj)[0]
+        context = {'object': obj, 'search': search}
+    except IndexError: 
+        return render(request, 'indx/shop.html', {
+            'message': 'No products found',
+            'search': search,
+        })
+    else:
+        print(obj.product_img)
+        return render(request, 'indx/shop.html', context)

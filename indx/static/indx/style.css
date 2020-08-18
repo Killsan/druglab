@@ -2,7 +2,7 @@
 
 body{
     /* background: white url('images/background.jpg') no-repeat center center fixed; */
-    background: white;
+    background: rgb(230, 230, 230);
     background-size: cover;
     font-size: 30px;
     color: black;
@@ -19,18 +19,27 @@ li{
 }
 
 #main_menu{
-    padding: 50px;
+    padding-top: 0;
+}
+
+#shop_main_div_button, #videos_main_button, #news_main_button{
+    width: 10%;
+    font-size: 30px;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+#shop_main_div_button:hover, #videos_main_button:hover, #news_main_button:hover{
+    cursor: pointer;
+    background: white;
 }
 
 /* ==============================================USER BOX=============================== */
 
 #user_box{
-    float: right;
     padding: 5px;
-    width: 300px;
-    background: white;
-    color: black;
-    border: 2px black solid;
+    background: rgb(122, 122, 122);
+    color: white;
     border-radius: 5px;
     margin: 10px;
 }
@@ -42,14 +51,74 @@ li{
 }
 
 #user_box_button{
-    border: 1px black solid;
-    background: white;
-    width: 80px;
-    font-size: 17px;
+    color: black;
+    padding: 5px;  
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid black;
 }
 
 #user_box_button:hover{
     cursor: pointer;
-    background: black;
-    color: white;
+    color: black;
+    background: white;
+    border: 1px solid black;
+}
+
+/* ==========================================SHOP============================================== */
+
+#shop_main_div{
+    background: rgb(201, 201, 201);
+    visibility: visible;
+    /* position: absolute; */
+    padding-bottom: 45px;
+}
+
+#search_input{
+    width: 90%;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    margin-left: 30px;
+    font-size: 20px;
+    border-top: 1px solid rgb(201, 201, 201);
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    box-shadow: 0 0 0;
+}
+
+#search_button{
+    font-size: 20px;
+    margin: 10px;
+    margin-left: 40px;
+    border: 1px solid black;
+    float: left;
+}
+
+#search_button:hover{
+    cursor: pointer;
+    background: white;
+    border: 1px solid black;
+}
+
+#product_div{
+    background: rgb(201, 201, 201);
+    margin-top: -4.9%;
+}
+
+/* =================================================VIDEOS============================================ */
+
+#videos_main_div{
+    visibility: hidden;
+    background: rgb(201, 201, 201);
+    /* position: absolute; */
+}
+
+/* =====================================================NEWS============================================= */
+
+#news_main_div{
+    visibility: hidden;
+    background: rgb(201, 201, 201);
+    /* position: absolute; */
 }

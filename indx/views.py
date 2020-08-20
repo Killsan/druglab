@@ -61,13 +61,18 @@ def shopSearch(request):
     search = request.POST.get('search')
     obj = str(search)
     try:
-        obj = Product.objects.filter(product_name=obj)[0]
-        context = {'object': obj, 'search': search}
+        all_products = []
+        found_products = []
+        for i in Product.objects.all():
+            all_products.append(i.product_name)
+        for i in all_products:
+            if obj in i:
+                found_products.append(Product.objects.filter(product_name=i)[0])
+        context = {'objects': found_products, 'search': search}
     except IndexError: 
         return render(request, 'indx/shop.html', {
             'message': 'No products found',
             'search': search,
         })
     else:
-        print(obj.product_img)
         return render(request, 'indx/shop.html', context)

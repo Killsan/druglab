@@ -12,9 +12,11 @@
     {% else %}  
 
     <div id='product_main'>
-        <img src="C:/Users/Kirill/Desktop/druglab/indx/images/1911.jfif" alt="">
-        <h2>{{ object.product_name }}</h2>
-        <h2>{{ object.product_img }}</h2>
+        <ul>
+            {% for object in objects %}
+            <li>{{ object.product_name }}</li>
+            {% endfor %}
+        </ul>
     </div>
 
     {% endif %}

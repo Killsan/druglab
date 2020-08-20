@@ -71,7 +71,7 @@ def shopSearch(request):
         context = {'objects': found_products, 'search': search}
     except IndexError: 
         return render(request, 'indx/shop.html', {
-            'message': 'No products found, but u can add them',
+            'message': 'No products found, but u can add them if u want',
             'search': search,
         })
     else:

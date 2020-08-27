@@ -57,22 +57,5 @@ def userPage(request):
     return render(request, 'indx/user.html', context)
 
 @login_required(login_url='indx:login')
-def shopSearch(request):
-    search = request.POST.get('search')
-    obj = str(search)
-    try:
-        all_products = []
-        found_products = []
-        for i in Product.objects.all():
-            all_products.append(i.product_name)
-        for i in all_products:
-            if obj in i:
-                found_products.append(Product.objects.filter(product_name=i)[0])
-        context = {'objects': found_products, 'search': search}
-    except IndexError: 
-        return render(request, 'indx/shop.html', {
-            'message': 'No products found, but u can add them if u want',
-            'search': search,
-        })
-    else:
-        return render(request, 'indx/shop.html', context)
+def create_main(request):
+    return render(request, 'indx/creation.html')

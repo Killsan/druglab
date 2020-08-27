@@ -3,39 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <title>Document</title>
     {% load static %}
     <link rel="stylesheet" type='text/css' href="{% static 'indx/style.css' %}">
 </head>
 <body>
 
-    <div id='user_box'>
-        <label id='user_box_name' for="logout_button">{{ request.user }}</label>
-        <a href="{% url 'indx:logout' %}"><button id='user_box_button' name='logout_button' id='logout'>Logout</button></a>
+    <div id='head'>
+        <div id='user_box' class='head_div'>
+            <label id='user_box_name' for="logout_button">{{ request.user }}</label>
+            <a href="{% url 'indx:logout' %}"><button id='user_box_button' name='logout_button' id='logout'>Logout</button></a>
+        </div>
+        <div id='title'><center><h1>Bot creator</h1></center></div>
     </div>
 
     <div id="main_menu">
-        <center><h1>Interesting name</h1></center>
-        <center><div id="menu">
-            <ul>
-                <li><button id="shop_main_div_button">Shop</button></li>
-                <li><button id="videos_main_button">Videos</button></li>
-                <li><button id="news_main_button">News</button></li>
-            </ul>
-        </div></center>
+        <center><a href="{% url 'indx:create' %}">
+            <button id='create_bot_button'>Create bot <img src="https://img.icons8.com/wired/64/000000/plus.png"/></button>
+            
+        </a></center>
     </div>
 
-    <center><div id="shop_main_div">
-        <form action="{% url 'indx:shop_search' %}" method="POST">
-            {% csrf_token %}
-            <input type="text" id="search_input" name='search'><br><br>
-            <button type="submit" id="search_button">Submit</button>
-        </form>
-    </div></center>
-
-    <div id="videos_main_div">a</div>
-
-    <div id="news_main_div">b</div>
 
     {% block content %}
 

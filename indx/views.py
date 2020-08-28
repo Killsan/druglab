@@ -13,7 +13,10 @@ from .models import *
 
 @login_required(login_url='indx:login')
 def index(request):
-    return render(request, 'indx/index.html')
+    context = {
+        'bots': Bot.objects.filter(owner=request.user),
+    }
+    return render(request, 'indx/index.html', context)
 
 @unauth_user
 def loginPage(request):
@@ -57,5 +60,16 @@ def userPage(request):
     return render(request, 'indx/user.html', context)
 
 @login_required(login_url='indx:login')
+@bot_owner
+def botInfo(request, bot):
+    context = {
+        'bot': Bot.objects.filter(name=bot)[0],
+    }
+    return render(request, 'indx/botInfo.html', context)
+
+@login_required(login_url='indx:login')
 def create_main(request):
-    return render(request, 'indx/creation.html')
+    context = {
+        'bots': Bot.objects.filter(owner=request.user),
+    }
+    return render(request, 'indx/creation.html', context)

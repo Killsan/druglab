@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <title>Bot</title>
+</head>
+<body>
+
+    <div id="head">{{ bot.name | title }}</div>
+    
+    <ul class="list-group">
+        <li class="list-group-item">
+            <label for="token_p">TOKEN:</label>
+            <p id='token_p'>{{ bot.token }}</p>
+        </li>
+        <li class="list-group-item">
+            <label for="owner_p">Owner:</label>
+            <p id="owner_p">{{ bot.owner }}</p>
+        </li>
+        <li class="list-group-item">
+            <label for="date_p">Created:</label>
+            <p id="date_p">{{ bot.date_created }}</p>
+        </li>
+    </ul>
+
+</body>
+
+<style>
+    #head{
+        background: grey;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        font-size: 30px;
+    }
+</style>
+
+</html>

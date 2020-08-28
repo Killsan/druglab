@@ -2,7 +2,7 @@
 
 body{
     /* background: white url('images/background.jpg') no-repeat center center fixed; */
-    background: rgb(230, 230, 230);
+    /* background: rgb(230, 230, 230); */
     background-size: cover;
     font-size: 30px;
     color: black;
@@ -17,54 +17,41 @@ li{
     display: inline;
 }
 
+
+/* =========================================NAVBAR=============================================== */
+
+#site_name{
+    font-size: 30px;
+}
+
+#logout_label{
+    margin-left: 15px;
+    font-size: 27px;
+}
+
+#logout_button{
+    font-size: 25px;
+    padding: -5px;
+}
+
+/* ==========================================BOTS===================================================== */
+
+/* #owner_bots{
+    background: rgb(250, 250, 250);
+} */
+
+#show_info_bot_button{
+    font-size: 23px;
+    margin-left: 10px;
+}
+
+/* ==================================================================================================== */
+
 #main_menu{
     padding-top: 0;
 }
 
-#create_bot_button{
-    padding: 10px;
-    border-radius: 10px;
-    background: rgb(172, 172, 172);
+#create_button{
     font-size: 30px;
-    margin-top: 40px;
-}
-
-#create_bot_button:hover{
-    background: white;
-}
-
-#head{
-    background: rgb(122, 122, 122);
-    color: white;
-    border-radius: 5px;
-    margin: 10px;
-    box-sizing: border-box;
-}
-
-.head_div{
-    display: inline-block;
-    float: left;
-}
-
-/* ==============================================USER BOX=============================== */
-
-#user_box_name{
-    font-size: 25px;
-    padding: 10px;
-    text-align: center;
-}
-
-#user_box_button{
-    color: black;
-    padding: 3px;  
-    font-size: 20px;
-    text-align: center;
-    border: 1px solid black;
-}
-
-#user_box_button:hover{
-    cursor: pointer;
-    color: black;
-    background: white;
-    border: 1px solid black;
+    margin: 20px;
 }

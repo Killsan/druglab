@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from .models import *
 
 def unauth_user(view_func):
     def wrapper_func(request, *args, **kwargs):
@@ -35,3 +36,17 @@ def admin_only(view_func):
         if group == 'admin':
             return view_func(request, *args, **kwargs)
     return wrapper_func
+
+def bot_owner(view_func):
+    def wrapper_func(request, bot, *args, **kwargs):
+        bots = Bot.objects.filter(owner=request.user)
+        access = False
+        for i in bots:
+            if i.name == bot:
+                access = True
+        if access == True:
+            return view_func(request, bot, *args, **kwargs)
+        else:
+            return HttpResponse("You don't have an access to this bot")
+    return wrapper_func
+        

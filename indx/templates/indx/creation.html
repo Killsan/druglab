@@ -1,7 +1,15 @@
 {% extends 'indx/index.html' %}
-
 {% block content %}
 
-<p>hello</p>
+<form action="" method="POST">
+    {% csrf_token %}
+
+    {{ form }}
+    <button>Submit</button>
+</form>
+
+{% for i in messages %}
+    <p id='error_message'>{{ i }}</p>
+{% endfor %}
 
 {% endblock content %}

@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.contrib import messages
 
 from django.contrib.auth import authenticate, login, logout
-from .forms import RegistrationForm
+from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 
@@ -69,7 +69,22 @@ def botInfo(request, bot):
 
 @login_required(login_url='indx:login')
 def create_main(request):
+
+    if request.method == 'POST':
+        form = CreateBotForm(request.POST)
+        if form.is_valid:
+            form.save()
+            return redirect("indx:index")
+        else:
+            messages.error("Form is not valid")
+
     context = {
         'bots': Bot.objects.filter(owner=request.user),
+        'form': CreateBotForm(initial={'owner': request.user}),
     }
     return render(request, 'indx/creation.html', context)
+
+@login_required(login_url='indx:login')
+@bot_owner
+def botUpdate(request, bot):
+    return HttpResponse('<h1>FUck u</h1>')

@@ -9,7 +9,14 @@
 </head>
 <body>
 
-    <div id="head">{{ bot.name | title }}</div>
+    <!-- <div id="head">{{ bot.name | title }}</div> -->
+    <div id='head'>
+        <p id='bot_name'>{{ bot.name | title }}</p>
+        <div id='update_delete_div'>
+            <a href="{% url 'indx:botUpdate' bot.name %}"><button id="update_button">Update</button></a>
+            <a href="#"><button id="delete_button">Delete</button></a>
+        </div>
+    </div>
     
     <ul class="list-group">
         <li class="list-group-item">
@@ -34,8 +41,39 @@
         color: white;
         padding: 20px;
         text-align: center;
-        font-size: 30px;
+        font-size: 45px;
     }
+
+    #update_button{
+        background: #27e4b5;
+        color: black;
+        font-size: 27px;
+        border: 0px;
+        border-radius: 5px;
+        padding: 7px;
+        width: 9%;
+    }
+
+    #update_button:hover{
+        cursor: pointer;
+        background: #1fbd95;
+    }
+
+    #delete_button{
+        background: red;
+        color: black;
+        font-size: 27px;
+        border: 0px;
+        border-radius: 5px;
+        padding: 7px;
+        width: 9%;
+    }
+
+    #delete_button:hover{
+        cursor: pointer;
+        background: rgb(204, 0, 0);
+    }
+
 </style>
 
 </html>

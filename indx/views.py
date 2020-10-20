@@ -60,14 +60,6 @@ def userPage(request):
     return render(request, 'indx/user.html', context)
 
 @login_required(login_url='indx:login')
-@bot_owner
-def botInfo(request, bot):
-    context = {
-        'bot': Bot.objects.filter(name=bot)[0],
-    }
-    return render(request, 'indx/botInfo.html', context)
-
-@login_required(login_url='indx:login')
 def create_main(request):
 
     if request.method == 'POST':
@@ -86,5 +78,27 @@ def create_main(request):
 
 @login_required(login_url='indx:login')
 @bot_owner
+def botInfo(request, bot):
+    context = {
+        'bot': Bot.objects.filter(name=bot)[0],
+    }
+    return render(request, 'indx/botInfo.html', context)
+
+@login_required(login_url='indx:login')
+@bot_owner
 def botUpdate(request, bot):
-    return HttpResponse('<h1>FUck u</h1>')
+
+    bot_info = Bot.objects.filter(name=bot)[0]
+    form = CreateBotForm(request.POST, instance=bot_info)
+    
+    context = {
+        'form': CreateBotForm(initial={
+            'owner': request.user,
+            'token': bot_info.token,
+            'name': bot_info.name,
+        }),
+        'name': bot_info.name,
+        
+    }
+
+    return render(request, 'indx/botUpdate.html', context)

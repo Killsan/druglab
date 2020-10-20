@@ -1,0 +1,16 @@
+{% extends 'indx/botMain.html' %}
+
+{% block content %}
+
+    <div id='head'>
+        <p id='bot_name'>{{ name | title }}</p>
+    </div>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.token }}
+
+        <button></button>
+    </form>
+
+{% endblock content %}

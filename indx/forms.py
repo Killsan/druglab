@@ -13,3 +13,12 @@ class CreateBotForm(ModelForm):
     class Meta:
         model = Bot
         fields = ['name', 'token', 'owner']
+
+    def __init__(self, *args, **kwargs):
+        super(CreateBotForm, self).__init__(*args, **kwargs)
+        self.fields['name'].widget = TextInput(attrs={'id': 'name_input'})
+    # def __init__(self, *args, **kwargs):
+    #     super(CreateBotForm, self).__init__(*args, **kwargs)
+    #     self.fields['name'].widget.attrs.update({'class' : 'name_class'})
+    #     self.fields['token'].widget.attrs.update({'class' : 'token_class'})
+    #     self.fields['owner'].widget.attrs.update({'class' : 'owner_class'})
